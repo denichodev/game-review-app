@@ -16,17 +16,19 @@ import {
 import { HamburgerIcon } from "@chakra-ui/icons";
 
 const Logo = () => (
-  <Text fontWeight="bold" fontSize="xl" color="green.300" align="left">
+  <Text fontWeight="bold" fontSize="xl" color="green.50" align="left">
     G A M R
   </Text>
 );
 
-export const Header = () => (
-  <Flex py={2} px={4} borderBottom="1px solid" borderBottomColor="green.300">
+const Header = () => (
+  <Flex py={2} px={4} borderBottom="1px solid" borderBottomColor="green.50">
     <Logo />
     <Spacer />
     <Center>
-      <HamburgerIcon color="green.300" />
+      <HamburgerIcon color="green.50" />
     </Center>
   </Flex>
 );
+
+export default Header;
