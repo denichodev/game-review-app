@@ -1,0 +1,56 @@
+- table:
+    schema: public
+    name: game
+  configuration:
+    custom_root_fields: {}
+    custom_column_names:
+      cover_url: coverUrl
+      updated_at: updatedAt
+      created_at: createdAt
+  array_relationships:
+  - name: genres
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: game_genre
+        column_mapping:
+          id: game_id
+- table:
+    schema: public
+    name: game_genre
+  object_relationships:
+  - name: game
+    using:
+      foreign_key_constraint_on: game_id
+  - name: genre
+    using:
+      foreign_key_constraint_on: genre_id
+- table:
+    schema: public
+    name: genre
+  array_relationships:
+  - name: game_genres
+    using:
+      foreign_key_constraint_on:
+        column: genre_id
+        table:
+          schema: public
+          name: game_genre
+- table:
+    schema: public
+    name: review
+  object_relationships:
+  - name: game
+    using:
+      foreign_key_constraint_on: game_id
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+- table:
+    schema: public
+    name: user
+  configuration:
+    custom_root_fields: {}
+    custom_column_names:
+      avatar_url: avatarUrl
