@@ -3,6 +3,8 @@
 game-review-app is a simple game reviewing web app made with Hasura and React using ChakraUI as the design system. It's sole
 purpose is for learning. To make things easier, we use CRA to create the front-end boilerplate.
 
+![](undertale.gif)
+
 ## Folder structure
 
 ```sh

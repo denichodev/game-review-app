@@ -19,8 +19,6 @@ const GameListPage = () => {
     );
   }
 
-  console.log(reviewsResult);
-
   return (
     <Box>
       <PageHeader title="Latest Reviews" />
