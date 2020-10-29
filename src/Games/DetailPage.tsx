@@ -7,28 +7,26 @@ import {
   Heading,
   HStack,
   StackDivider,
-  Spacer,
   Tag,
   TagLabel,
-  Avatar,
 } from "@chakra-ui/core";
 import { GAME_BY_ID_QUERY, GAME_REVIEW } from "./Queries/gamesQuery";
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 
 import PageHeader from "../Layout/PageHeader";
+import ReviewCard from "../Reviews/ReviewCard";
 import {
   GameById,
   GameByIdVariables,
   GameReview,
   GameReviewVariables,
 } from "../../globalTypes";
-import GameCard from "./GameCard";
 
 const GameDetailPage = () => {
   const params = useParams<{ id: string }>();
   const [readMoreActive, setReadMoreActive] = React.useState<boolean>(false);
-  const onReadMoreClick = React.useCallback(() => {
+  const handleReadMoreClick = React.useCallback(() => {
     setReadMoreActive((prev) => !prev);
   }, []);
 
@@ -83,10 +81,12 @@ const GameDetailPage = () => {
             color="green.50"
             fontSize="md"
             noOfLines={readMoreActive ? undefined : 4}
+            cursor="pointer"
+            onClick={handleReadMoreClick}
           >
             {game.description}
           </Text>
-          <Box cursor="pointer" onClick={onReadMoreClick}>
+          <Box cursor="pointer" onClick={handleReadMoreClick}>
             <Text fontSize="sm" color="gray.400" align="right">
               Read {readMoreActive ? "Less" : "More"}
             </Text>
@@ -98,30 +98,7 @@ const GameDetailPage = () => {
           </Heading>
           <Stack divider={<StackDivider borderColor="gray.700" />}>
             {reviews.map((review) => (
-              <HStack key={review.id} align="top">
-                <Box pt={1}>
-                  <Avatar
-                    name="Dan Abrahmov"
-                    src={review.user.avatarUrl || ""}
-                    size="sm"
-                  />
-                </Box>
-                <Box flex={1}>
-                  <HStack>
-                    <Text fontWeight="bold" fontSize="md">
-                      {review.user.name}
-                    </Text>
-                    <Spacer />
-                    <Text
-                      fontWeight="bold"
-                      color={review.score > 8 ? "green.300" : "white"}
-                    >
-                      {review.score}/10
-                    </Text>
-                  </HStack>
-                  <Text fontSize="sm">{review.comment}</Text>
-                </Box>
-              </HStack>
+              <ReviewCard review={review} />
             ))}
           </Stack>
         </Stack>

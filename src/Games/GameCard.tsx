@@ -18,14 +18,17 @@ interface Props {
 
 const GameCard = ({ game }: Props) => (
   <Stack key={game.id}>
-    <Image
-      borderRadius={6}
-      width="100%"
-      height="120px"
-      fit="cover"
-      src={game.coverUrl || ""}
-      alt={`Cover Image for ${game.name}`}
-    />
+    <RouterLink to={`/game/${game.id}`}>
+      <Image
+        borderRadius={6}
+        width="100%"
+        cursor="pointer"
+        height="120px"
+        fit="cover"
+        src={game.coverUrl || ""}
+        alt={`Cover Image for ${game.name}`}
+      />
+    </RouterLink>
     <Heading as="h6" size="lg" color="green.50">
       <RouterLink to={`/game/${game.id}`}>
         <Link>{game.name}</Link>

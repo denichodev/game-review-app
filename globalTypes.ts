@@ -107,16 +107,28 @@ export interface GameReview_review_user {
   username: string;
 }
 
+export interface GameReview_review_game {
+  __typename: "game";
+  id: number;
+  name: string;
+  coverUrl: string | null;
+}
+
 export interface GameReview_review {
   __typename: "review";
   id: number;
   title: string;
   comment: string;
   score: number;
+  createdAt: any | null;
   /**
    * An object relationship
    */
   user: GameReview_review_user;
+  /**
+   * An object relationship
+   */
+  game: GameReview_review_game;
 }
 
 export interface GameReview {
@@ -128,6 +140,58 @@ export interface GameReview {
 
 export interface GameReviewVariables {
   where?: review_bool_exp | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: AllReviews
+// ====================================================
+
+export interface AllReviews_review_user {
+  __typename: "user";
+  id: number;
+  avatarUrl: string | null;
+  name: string;
+  username: string;
+}
+
+export interface AllReviews_review_game {
+  __typename: "game";
+  id: number;
+  name: string;
+  coverUrl: string | null;
+}
+
+export interface AllReviews_review {
+  __typename: "review";
+  id: number;
+  title: string;
+  comment: string;
+  score: number;
+  createdAt: any | null;
+  /**
+   * An object relationship
+   */
+  user: AllReviews_review_user;
+  /**
+   * An object relationship
+   */
+  game: AllReviews_review_game;
+}
+
+export interface AllReviews {
+  /**
+   * fetch data from the table: "review"
+   */
+  review: AllReviews_review[];
+}
+
+export interface AllReviewsVariables {
+  order_by?: review_order_by[] | null;
 }
 
 /* tslint:disable */
@@ -184,16 +248,28 @@ export interface review_user {
   username: string;
 }
 
+export interface review_game {
+  __typename: "game";
+  id: number;
+  name: string;
+  coverUrl: string | null;
+}
+
 export interface review {
   __typename: "review";
   id: number;
   title: string;
   comment: string;
   score: number;
+  createdAt: any | null;
   /**
    * An object relationship
    */
   user: review_user;
+  /**
+   * An object relationship
+   */
+  game: review_game;
 }
 
 /* tslint:disable */
@@ -204,6 +280,18 @@ export interface review {
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
+
+/**
+ * column ordering options
+ */
+export enum order_by {
+  asc = "asc",
+  asc_nulls_first = "asc_nulls_first",
+  asc_nulls_last = "asc_nulls_last",
+  desc = "desc",
+  desc_nulls_first = "desc_nulls_first",
+  desc_nulls_last = "desc_nulls_last",
+}
 
 /**
  * expression to compare columns of type Int. All fields are combined with logical 'AND'.
@@ -260,6 +348,31 @@ export interface game_bool_exp {
 }
 
 /**
+ * order by aggregate values of table "game_genre"
+ */
+export interface game_genre_aggregate_order_by {
+  avg?: game_genre_avg_order_by | null;
+  count?: order_by | null;
+  max?: game_genre_max_order_by | null;
+  min?: game_genre_min_order_by | null;
+  stddev?: game_genre_stddev_order_by | null;
+  stddev_pop?: game_genre_stddev_pop_order_by | null;
+  stddev_samp?: game_genre_stddev_samp_order_by | null;
+  sum?: game_genre_sum_order_by | null;
+  var_pop?: game_genre_var_pop_order_by | null;
+  var_samp?: game_genre_var_samp_order_by | null;
+  variance?: game_genre_variance_order_by | null;
+}
+
+/**
+ * order by avg() on columns of table "game_genre"
+ */
+export interface game_genre_avg_order_by {
+  game_id?: order_by | null;
+  genre_id?: order_by | null;
+}
+
+/**
  * Boolean expression to filter rows from the table "game_genre". All fields are combined with a logical 'AND'.
  */
 export interface game_genre_bool_exp {
@@ -270,6 +383,93 @@ export interface game_genre_bool_exp {
   game_id?: Int_comparison_exp | null;
   genre?: genre_bool_exp | null;
   genre_id?: Int_comparison_exp | null;
+}
+
+/**
+ * order by max() on columns of table "game_genre"
+ */
+export interface game_genre_max_order_by {
+  game_id?: order_by | null;
+  genre_id?: order_by | null;
+}
+
+/**
+ * order by min() on columns of table "game_genre"
+ */
+export interface game_genre_min_order_by {
+  game_id?: order_by | null;
+  genre_id?: order_by | null;
+}
+
+/**
+ * order by stddev() on columns of table "game_genre"
+ */
+export interface game_genre_stddev_order_by {
+  game_id?: order_by | null;
+  genre_id?: order_by | null;
+}
+
+/**
+ * order by stddev_pop() on columns of table "game_genre"
+ */
+export interface game_genre_stddev_pop_order_by {
+  game_id?: order_by | null;
+  genre_id?: order_by | null;
+}
+
+/**
+ * order by stddev_samp() on columns of table "game_genre"
+ */
+export interface game_genre_stddev_samp_order_by {
+  game_id?: order_by | null;
+  genre_id?: order_by | null;
+}
+
+/**
+ * order by sum() on columns of table "game_genre"
+ */
+export interface game_genre_sum_order_by {
+  game_id?: order_by | null;
+  genre_id?: order_by | null;
+}
+
+/**
+ * order by var_pop() on columns of table "game_genre"
+ */
+export interface game_genre_var_pop_order_by {
+  game_id?: order_by | null;
+  genre_id?: order_by | null;
+}
+
+/**
+ * order by var_samp() on columns of table "game_genre"
+ */
+export interface game_genre_var_samp_order_by {
+  game_id?: order_by | null;
+  genre_id?: order_by | null;
+}
+
+/**
+ * order by variance() on columns of table "game_genre"
+ */
+export interface game_genre_variance_order_by {
+  game_id?: order_by | null;
+  genre_id?: order_by | null;
+}
+
+/**
+ * ordering options when selecting data from "game"
+ */
+export interface game_order_by {
+  coverUrl?: order_by | null;
+  createdAt?: order_by | null;
+  description?: order_by | null;
+  developer?: order_by | null;
+  genres_aggregate?: game_genre_aggregate_order_by | null;
+  id?: order_by | null;
+  name?: order_by | null;
+  releaseYear?: order_by | null;
+  updatedAt?: order_by | null;
 }
 
 /**
@@ -307,6 +507,7 @@ export interface review_bool_exp {
   _not?: review_bool_exp | null;
   _or?: (review_bool_exp | null)[] | null;
   comment?: String_comparison_exp | null;
+  createdAt?: timestamptz_comparison_exp | null;
   game?: game_bool_exp | null;
   game_id?: Int_comparison_exp | null;
   id?: Int_comparison_exp | null;
@@ -314,6 +515,21 @@ export interface review_bool_exp {
   title?: String_comparison_exp | null;
   user?: user_bool_exp | null;
   user_id?: Int_comparison_exp | null;
+}
+
+/**
+ * ordering options when selecting data from "review"
+ */
+export interface review_order_by {
+  comment?: order_by | null;
+  createdAt?: order_by | null;
+  game?: game_order_by | null;
+  game_id?: order_by | null;
+  id?: order_by | null;
+  score?: order_by | null;
+  title?: order_by | null;
+  user?: user_order_by | null;
+  user_id?: order_by | null;
 }
 
 /**
@@ -342,6 +558,16 @@ export interface user_bool_exp {
   id?: Int_comparison_exp | null;
   name?: String_comparison_exp | null;
   username?: String_comparison_exp | null;
+}
+
+/**
+ * ordering options when selecting data from "user"
+ */
+export interface user_order_by {
+  avatarUrl?: order_by | null;
+  id?: order_by | null;
+  name?: order_by | null;
+  username?: order_by | null;
 }
 
 //==============================================================

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Header from "./Layout/Header";
 import NavFooter from "./Layout/NavFooter";
 import GameListPage from "./Games/ListPage";
+import ReviewsListPage from "./Reviews/ListPage";
 import GameDetailPage from "./Games/DetailPage";
 import theme from "./theme";
 
@@ -35,7 +36,7 @@ export const App = () => {
                 </Route>
                 <Route path="/reviews">
                   <Box p={4}>
-                    <Text>REviews</Text>
+                    <ReviewsListPage />
                   </Box>
                 </Route>
               </Switch>

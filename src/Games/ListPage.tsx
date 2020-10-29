@@ -1,5 +1,17 @@
 import * as React from "react";
-import { Box, Stack, StackDivider } from "@chakra-ui/core";
+import {
+  Box,
+  Stack,
+  StackDivider,
+  Menu,
+  Button,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Text,
+  Flex,
+} from "@chakra-ui/core";
+import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
 import { ALL_GAMES_QUERY } from "./Queries/gamesQuery";
 import { useQuery } from "@apollo/client";
 
