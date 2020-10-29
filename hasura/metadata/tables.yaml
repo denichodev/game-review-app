@@ -7,6 +7,7 @@
       cover_url: coverUrl
       updated_at: updatedAt
       created_at: createdAt
+      release_year: releaseYear
   array_relationships:
   - name: genres
     using:
