@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# game-review-app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+game-review-app is a simple game reviewing web app made with Hasura and React using ChakraUI as the design system. It's sole
+purpose is for learning. To make things easier, we use CRA to create the front-end boilerplate.
 
-## Available Scripts
+## Folder structure
 
-In the project directory, you can run:
+```sh
+game-review-app/
+├── hasura            # Hasura migrations, config, meta, and seeds
+└── (...rest)         # The rest are mostly from Create React App clientside code.
+```
 
-### `yarn start`
+The clientside folder structure inside src follows a Domain Driven Design architecture (hopefully).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Requirements
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+There are not so many unique requirements in this project, I assume you already know where and how to get it by simply
+reading the source code, but if you don't, here's some clue:
 
-### `yarn test`
+1. **Docker (docker-compose)**: App is powered by [Docker](https://www.docker.com/) with Docker Compose to run Hasura.
+2. **NodeJS**: For clientside tooling with CRA.
+3. **Hasura CLI**: I didn't put the CLI as a scoped dependency, install it globally with `yarn global add hasura-cli`.
+4. **Yarn**: This docs assumes that you use Yarn, use whatever you want.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Setup & Workflow
 
-### `yarn build`
+1. Copy the `.env.example` to `.env`. Since this is for learning purpose, you don't need to change anything, I've setup the easiest basic `.env`
+2. Run your backend (Hasura & Postgres) with `docker-compose up`, whether you want to pass in a `-d` for "detached" mode, it's up to you.
+3. If it's your first time running this, you need to apply the migrations inside the `hasura` directory by doing this:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+$ cd hasura
+$ hasura migrate apply
+$ hasura metadata apply
+$ hasura seeds apply
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Run the clientside app, simply by using `yarn start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Scripts
 
-### `yarn eject`
+You can also run the app without Docker by running this script.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+| `yarn <script>` | Description                              |
+| --------------- | ---------------------------------------- |
+| `gql-codegen`   | Generate typescript from your GQL Schema |
+| `start`         | Start the clientside React app           |
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Improvements to do if I have the whole time in the world
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- TESTING! Both for backend and frontend side.
+- Authentication. The backend is very open, I can add a hasura secret key with webhook, but the focus in this repo is ain't it.
+- Error handling for clientside app, I didn't handle the `4nn` or `5nn` error properly in the clientside app.
+- Proper image size, lazy loading images, and any othere performance-related clientside code.
+- Proper router with stack navigator, to make it behaves more like a mobile app.
+- Makes the clientside app to be in a docker service as well.
+- Deployment handling & configurations.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
