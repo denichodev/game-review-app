@@ -1,18 +1,5 @@
 import * as React from "react";
-import {
-  ChakraProvider,
-  CSSReset,
-  Box,
-  Text,
-  Link,
-  VStack,
-  IconButton,
-  Code,
-  Spacer,
-  Center,
-  Grid,
-  Flex,
-} from "@chakra-ui/core";
+import { Text, Spacer, Center, Flex } from "@chakra-ui/core";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
 const Logo = () => (
@@ -22,7 +9,15 @@ const Logo = () => (
 );
 
 const Header = () => (
-  <Flex py={2} px={4} borderBottom="1px solid" borderBottomColor="green.50">
+  <Flex
+    py={2}
+    px={4}
+    bg="gray.700"
+    position="sticky"
+    top={0}
+    right={0}
+    left={0}
+  >
     <Logo />
     <Spacer />
     <Center>

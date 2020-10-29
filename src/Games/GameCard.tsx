@@ -6,13 +6,14 @@ import {
   Heading,
   HStack,
   Tag,
+  Link,
   TagLabel,
 } from "@chakra-ui/core";
+import { Link as RouterLink } from "react-router-dom";
 import { AllGames_game } from "../../globalTypes";
 
 interface Props {
   game: AllGames_game;
-  variant?: "simple" | "full";
 }
 
 const GameCard = ({ game }: Props) => (
@@ -26,7 +27,9 @@ const GameCard = ({ game }: Props) => (
       alt={`Cover Image for ${game.name}`}
     />
     <Heading as="h6" size="lg" color="green.50">
-      {game.name}
+      <RouterLink to={`/game/${game.id}`}>
+        <Link>{game.name}</Link>
+      </RouterLink>
     </Heading>
     <HStack>
       {game.genres.map((genre) => (
@@ -45,9 +48,5 @@ const GameCard = ({ game }: Props) => (
     </HStack>
   </Stack>
 );
-
-GameCard.defaultProps = {
-  variant: "simple",
-};
 
 export default GameCard;
