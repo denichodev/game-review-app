@@ -38,11 +38,9 @@ $ hasura metadata apply
 $ hasura seeds apply
 ```
 
-4. Run the clientside app, simply by using `yarn start`
+4. Install with `yarn` and run the clientside app simply by using `yarn start`
 
 ## Scripts
-
-You can also run the app without Docker by running this script.
 
 | `yarn <script>` | Description                              |
 | --------------- | ---------------------------------------- |
